@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.email, Validators.required]],
       phonenumber: [null],
-      notification:['email']
+      notification: ['email']
     });
     this.formControlValueChanged();
   }
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.registerForm.invalid){
+    if (this.registerForm.invalid) {
       return;
     }
     this.loading = true;
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         (mode: string) => {
             console.log(mode);
             if (mode === 'phone') {
-                phoneControl.setValidators([Validators.required,Validators.minLength(10)]);
+                phoneControl.setValidators([Validators.required, Validators.minLength(10)]);
             } else if (mode === 'email') {
                 phoneControl.clearValidators();
             }
