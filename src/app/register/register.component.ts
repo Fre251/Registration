@@ -29,36 +29,35 @@ export class RegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      email: ['',[Validators.email,Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
       phonenumber: [null],
       notification:['email']
     });
     this.formControlValueChanged();
   }
 
-  get f(){
+  get f() {
     return this.registerForm.controls;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
-    if(this.registerForm.invalid){
+    if (this.registerForm.invalid){
       return;
     }
     this.loading = true;
-    debugger;
     this.userService.register(this.registerForm.value)
     .pipe(first()).subscribe(
       data => {
-        this.alertService.success("Registration Success", true);
-        this.router.navigate['/login'];
+        this.alertService.success('Registration Success', true);
       },
       error => {
         this.alertService.error(error);
         this.loading = false;
-      }
-    )
+      },
+      () => this.router.navigate['/login']
+    );
   }
 
   formControlValueChanged() {
@@ -68,8 +67,7 @@ export class RegisterComponent implements OnInit {
             console.log(mode);
             if (mode === 'phone') {
                 phoneControl.setValidators([Validators.required,Validators.minLength(10)]);
-            }
-            else if (mode === 'email') {
+            } else if (mode === 'email') {
                 phoneControl.clearValidators();
             }
             phoneControl.updateValueAndValidity();

@@ -24,7 +24,6 @@ import { SerachPipe } from './serach.pipe';
     RegisterComponent,
     AlertComponent,
     SerachPipe
-    
   ],
   imports: [
     BrowserModule,
